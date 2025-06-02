@@ -1,0 +1,2 @@
+FORM_LINK = https://docs.google.com/forms/d/1kmg5QLrAnGh5qbG4rl7Z7DJFE7ww5zQjgL-hfg8LxMM/edit#responses
+TEMP_GITHUB_HOSTING = https://lunar2409.github.io (it has the previous version of the site hosting..) 
