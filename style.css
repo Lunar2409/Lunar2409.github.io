@@ -243,6 +243,40 @@ body {
     transform: translateY(0);
 }
 
+/* Highlight CBSE Board Preparation card */
+.service-card:first-child {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.98) 0%, rgba(255, 255, 255, 0.95) 100%);
+    box-shadow: 0 15px 40px rgba(34, 87, 122, 0.15);
+    transform: translateY(40px) scale(1.02);
+    border: 2px solid #38a3a5;
+}
+
+.service-card:first-child h3 {
+    color: #22577a;
+    font-size: clamp(1.6rem, 2.2vw, 2rem);
+    text-shadow: 1px 1px 2px rgba(34, 87, 122, 0.1);
+}
+
+.service-card:first-child::before {
+    height: 8px;
+    background: linear-gradient(90deg, #22577a, #38a3a5, #57cc99);
+}
+
+.service-card:first-child li {
+    font-weight: 600;
+    color: #1a4b6e;
+}
+
+.service-card:first-child li::before {
+    color: #57cc99;
+    font-size: 1.1em;
+}
+
+.service-card:first-child.visible {
+    opacity: 1;
+    transform: translateY(0) scale(1.02);
+}
+
 .service-card h3 {
     color: #1a4b6e;
     font-size: clamp(1.4rem, 2vw, 1.8rem);
@@ -854,4 +888,5 @@ h1, h2, h3, p, li {
 .testimonial-card,
 .section,
 h1, h2, h3, p, li {
-  
+    transition: all 0.3s ease-in-out;
+} 
