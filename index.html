@@ -10,7 +10,30 @@
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
 </head>
 <body>
-  <section class="section hero" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80')">
+  <!-- Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <div class="nav-logo">
+        <a href="#hero">Harmony English Classes</a>
+      </div>
+      
+      <div class="nav-menu" id="nav-menu">
+        <a href="#hero" class="nav-link">Home</a>
+        <a href="#services" class="nav-link">Services</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="#testimonials" class="nav-link">Testimonials</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </div>
+      
+      <div class="hamburger" id="hamburger">
+        <span class="bar"></span>
+        <span class="bar"></span>
+        <span class="bar"></span>
+      </div>
+    </div>
+  </nav>
+
+  <section class="section hero" id="hero" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80')">
     <div class="overlay"></div>
     <div class="hero-content">
       <h1>Harmony English Classes</h1>
@@ -19,7 +42,7 @@
     <div class="scroll-indicator"></div>
   </section>
 
-  <section class="section services-section" style="background-image: url('https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=1920&q=80')">
+  <section class="section services-section" id="services" style="background-image: url('https://images.unsplash.com/photo-1503676382389-4809596d5290?auto=format&fit=crop&w=1920&q=80')">
     <div class="overlay"></div>
     <div class="services-grid">
       <div class="service-card">
@@ -96,7 +119,7 @@
     </div>
   </section>
 
-  <section class="section about-section" style="background-image: url('assets/images/Teaching-English-Online-1200x675.webp')">
+  <section class="section about-section" id="about" style="background-image: url('assets/images/Teaching-English-Online-1200x675.webp')">
     <div class="overlay"></div>
     <div class="about-content">
       <h2>About Harmony English Classes</h2>
@@ -124,7 +147,7 @@
     </div>
   </section>
 
-  <section class="section testimonials-section" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1920&q=80')">
+  <section class="section testimonials-section" id="testimonials" style="background-image: url('https://images.unsplash.com/photo-1464983953574-0892a716854b?auto=format&fit=crop&w=1920&q=80')">
     <div class="overlay"></div>
     <div class="testimonials-content">
       <h2>What Our Students Say</h2>
@@ -145,7 +168,7 @@
     </div>
   </section>
 
-  <section class="section contact-section" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80')">
+  <section class="section contact-section" id="contact" style="background-image: url('https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=1920&q=80')">
     <div class="overlay"></div>
     <div class="contact-content">
       <h2>Start Your Learning Journey</h2>
@@ -302,10 +325,62 @@
       heroContent.style.transform = 'perspective(1000px) rotateY(0) rotateX(0) translateZ(0)';
     });
 
-    // Add smooth scroll for the button
-    document.querySelector('.button').addEventListener('click', function() {
-        document.querySelector('#contact-form').scrollIntoView({
-            behavior: 'smooth'
+    // Hamburger Menu Functionality
+    const hamburger = document.getElementById('hamburger');
+    const navMenu = document.getElementById('nav-menu');
+
+    console.log('Hamburger element:', hamburger);
+    console.log('Nav menu element:', navMenu);
+
+    if (hamburger && navMenu) {
+        hamburger.addEventListener('click', function(e) {
+            console.log('Hamburger clicked!');
+            e.preventDefault();
+            e.stopPropagation();
+            hamburger.classList.toggle('active');
+            navMenu.classList.toggle('active');
+            console.log('Hamburger active:', hamburger.classList.contains('active'));
+            console.log('Nav menu active:', navMenu.classList.contains('active'));
+        });
+
+        // Close mobile menu when clicking on a link
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', () => {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!hamburger.contains(e.target) && !navMenu.contains(e.target)) {
+                hamburger.classList.remove('active');
+                navMenu.classList.remove('active');
+            }
+        });
+    } else {
+        console.error('Hamburger or nav menu elements not found!');
+    }
+
+    // Active link highlighting based on scroll position
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+
+    window.addEventListener('scroll', () => {
+        let current = '';
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            if (scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
         });
     });
   </script>
