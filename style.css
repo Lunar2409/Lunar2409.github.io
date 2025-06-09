@@ -34,11 +34,75 @@
     font-size: 1.5rem;
     font-weight: 700;
     font-family: 'Montserrat', sans-serif;
-    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
 }
 
 .nav-logo a:hover {
-    color: #38a3a5;
+    color: #ffffff !important;
+    background: none !important;
+    transform: none !important;
+    scale: 1 !important;
+}
+
+.nav-logo a:hover * {
+    transform: none !important;
+    scale: 1 !important;
+    color: inherit !important;
+    background: none !important;
+}
+
+.logo-img {
+    height: 120px !important;
+    width: auto !important;
+    border-radius: 5px;
+    max-width: 500px !important;
+    transition: none !important;
+    transform: none !important;
+    pointer-events: none !important;
+}
+
+.nav-logo a:hover .logo-img {
+    transform: none !important;
+    scale: 1 !important;
+    transition: none !important;
+}
+
+/* Completely disable any hover effects on logo */
+.nav-logo *:hover {
+    transform: none !important;
+    scale: 1 !important;
+    transition: none !important;
+    color: inherit !important;
+    background: none !important;
+}
+
+.logo-text {
+    font-size: 1.3rem;
+    font-weight: 600;
+}
+
+/* Mobile responsive logo */
+@media (max-width: 768px) {
+    .logo-img {
+        height: 100px !important;
+        max-width: 400px !important;
+    }
+    
+    .logo-text {
+        font-size: 1.1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo-img {
+        height: 80px !important;
+        max-width: 300px !important;
+    }
+    
+    .logo-text {
+        font-size: 1rem;
+    }
 }
 
 .nav-menu {
